@@ -29,10 +29,16 @@ public class FunctionsSystem extends AppCompatActivity {
         SampleEnumListAdapter adapter = new SampleEnumListAdapter();
         //SampleEnumMapAdapter adapter = new SampleEnumMapAdapter();
         recyclerView.setAdapter(adapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         List<SampleData> sampleData = getSampleData();
         adapter.setSample2Data(sampleData);
+    }
+
+    private List<SampleData> createListFunctions(){
+        List<SampleData> dataSet = new ArrayList<>();
+        return dataSet;
     }
 
     private List<SampleData> getSampleData() {
@@ -42,21 +48,18 @@ public class FunctionsSystem extends AppCompatActivity {
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_info), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_information);
         dataSet.add(data);
-        /*for (int i = 1; i <= 4; i++) {
-            SampleData data = new SampleData();
-            data.mTitle = getString(R.string.title_type2);
-            data.mDrawableResId = getResources().getIdentifier(
-                    getString(R.string.drawable_animal_name, i), "drawable", getPackageName());
-            data.mContent = getString(R.string.content_type2, i);
-            dataSet.add(data);
-        }*/
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_informacion_app);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_info), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_information);
+        dataSet.add(data);
+
 
         return dataSet;
     }
 
-    public void startActivityInfo(View view){
-        Intent intent = IntentFactory.createIntent(view.getContext(), infoApp.class);
-
+    public void startActivityInfo(RecyclerView.ViewHolder view){
+        Intent intent = IntentFactory.createIntent(this, infoApp.class);
         startActivity(intent);
     }
 

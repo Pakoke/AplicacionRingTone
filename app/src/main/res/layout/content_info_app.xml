@@ -11,12 +11,21 @@
     tools:context="aplicacionringtone.aplicacionringtone.functions.infoApp">
     <TextView
         android:id="@+id/inf_title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:text="@string/inf_title"/>
+        android:text="@string/inf_title"
+        android:autoText="false"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/abc_text_size_subtitle_material_toolbar" />
     <TextView
         android:id="@+id/inf_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/inf_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/inf_content"
+        android:layout_below="@+id/inf_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:textSize="@dimen/abc_text_size_body_1_material" />
+
 </RelativeLayout>
