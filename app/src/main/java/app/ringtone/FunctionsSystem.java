@@ -43,24 +43,43 @@ public class FunctionsSystem extends AppCompatActivity {
 
     private List<SampleData> getSampleData() {
         List<SampleData> dataSet = new ArrayList<>();
+
         SampleData data = new SampleData();
-        data.mTitle = getString(R.string.f_informacion_app);
+        data.mTitle = getString(R.string.f_title_informacion);
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_info), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_information);
-        dataSet.add(data);
-        data = new SampleData();
-        data.mTitle = getString(R.string.f_informacion_app);
-        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_info), "drawable", getPackageName());
-        data.mContent = getString(R.string.f_content_information);
+        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
         dataSet.add(data);
 
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_title_settings);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_settings), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_settings);
+        data.mListener = new listenerActivitySettings(this.findViewById(R.id.grid_layout_type2));
+        dataSet.add(data);
 
         return dataSet;
     }
 
-    public void startActivityInfo(RecyclerView.ViewHolder view){
-        Intent intent = IntentFactory.createIntent(this, infoApp.class);
-        startActivity(intent);
+
+    private class listenerActivityInfo implements View.OnClickListener{
+        View view;
+        public listenerActivityInfo(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            Intent intent = IntentFactory.createIntent(v.getContext(), infoApp.class);
+            startActivity(intent);
+        }
+    }
+    private class listenerActivitySettings implements View.OnClickListener{
+        View view;
+        public listenerActivitySettings(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            Intent intent = IntentFactory.createIntent(v.getContext(), setting_activity.class);
+            intent.putExtra("comeFrom",FunctionsSystem.class.getName());
+            startActivity(intent);
+        }
     }
 
 }

@@ -58,9 +58,8 @@ public class setting_activity extends AppCompatActivity {
                 (this, android.R.layout.simple_spinner_item,list);
         dataAdapter.setDropDownViewResource
                 (android.R.layout.simple_spinner_dropdown_item);
+
         list_app.setAdapter(dataAdapter);
-
-
 
     }
 
@@ -75,30 +74,15 @@ public class setting_activity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        /*
-        text_user.setOnEditorActionListener(new android.widget.TextView.OnEditorActionListener() {
-            @Override
-            public boolean onEditorAction(android.widget.TextView v, int actionId, KeyEvent event) {
-                Log.i(this.getClass().toString(), "Accion de error onEditorAction");
-                if (text_user.getText().toString().contains("a")) {
-                    v.setError(getString(R.string.error_user));
-                }
-                return false;
-            }
-        });
-        text_user.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (KeyEvent.ACTION_DOWN == event.getAction()) {
-                    if (text_user.getText().toString().contains("a")) {
-                        text_user.setError(getString(R.string.error_user));
-                    } else {
-                        text_user.setError(null);
-                    }
-                }
-                return false;
-            }
-        });*/
+    }
+    @Override
+    public void onBackPressed() {
+        finish();
+        if(getIntent().getStringExtra("comeFrom")!=null){
+            Intent intent = IntentFactory.getFactory(getIntent().getStringExtra("comeFrom"));
+            startActivity(intent);
+        }
+
     }
 
 }

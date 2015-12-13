@@ -89,13 +89,18 @@
     <string name="content_type2">This is sample data for view type 2 - %d</string>
     <string name="content_type3">This is sample data for view type 3</string>
     <string name="drawable_animal_name">animal%d</string>
+
     <string name="drawable_info">icon_info_simple</string>
+    <string name="f_title_informacion">Informacion Aplicacion</string>
     <string name="f_content_information">Aqui puedes ver toda la info de la aplicacion</string>
-    <string name="f_informacion_app">Click para ver la info</string>
-    <string name="title_activity_info_app">infoApp</string>
+
+    <string name="drawable_settings">black_white_android_settings</string>
+    <string name="f_title_settings">Configuracion</string>
+    <string name="f_content_settings">Aqui puedes configurar todos los parametros de la aplicacion</string>
 
     <!-- Strings part info -->
 
+    <string name="title_activity_info_app">infoApp</string>
     <string name="inf_title">Aqui podras encontrar toda la informacion de la aplicacion</string>
     <string name="inf_content">Esta aplicacion esta orientada a trabajar con un sistema servidor domotico
     para sacar partido de lo maximo posible a la hora de usabilidad del sistema entero.</string>
