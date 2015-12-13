@@ -19,8 +19,8 @@ public class FunctionsSystem extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_example);
-
+        //setContentView(R.layout.activity_main_example);
+        setContentView(R.layout.activity_functions_system);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         SampleEnumListAdapter adapter = new SampleEnumListAdapter();
         //SampleEnumMapAdapter adapter = new SampleEnumMapAdapter();
