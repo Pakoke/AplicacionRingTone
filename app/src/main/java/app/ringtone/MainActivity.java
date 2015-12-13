@@ -1,11 +1,12 @@
-package app.pacoke.aplicacionringtone;
+package app.ringtone;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import Factories.IntentFactory;
-import SettingsApp.SharedSettings;
+import app.pacoke.aplicacionringtone.R;
+import factories.IntentFactory;
+import settingsApp.SharedSettings;
 
 public class MainActivity extends AppCompatActivity {
 

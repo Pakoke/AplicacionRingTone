@@ -1,16 +1,18 @@
-package app.pacoke.aplicacionringtone;
+package app.ringtone;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import Binders.SampleData;
-import UtilsApp.*;
+import app.ringtone.functions.infoApp;
+import app.pacoke.aplicacionringtone.R;
+import binders.SampleData;
+import factories.IntentFactory;
+import utilsApp.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +23,8 @@ public class FunctionsSystem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main_example);
         setContentView(R.layout.activity_functions_system);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview_main);
         SampleEnumListAdapter adapter = new SampleEnumListAdapter();
         //SampleEnumMapAdapter adapter = new SampleEnumMapAdapter();
@@ -48,6 +52,12 @@ public class FunctionsSystem extends AppCompatActivity {
         }*/
 
         return dataSet;
+    }
+
+    public void startActivityInfo(View view){
+        Intent intent = IntentFactory.createIntent(view.getContext(), infoApp.class);
+
+        startActivity(intent);
     }
 
 }
