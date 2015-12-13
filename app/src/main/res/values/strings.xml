@@ -59,7 +59,7 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_setting_activity">setting_activity</string>
+    <string name="title_activity_setting_activity">Ajustes</string>
 
     <!-- Strings Settings -->
 
@@ -79,7 +79,7 @@
     <string name="help_phone">6xxxxxxxx</string>
     <string name="input_phone">Introduce un movil local</string>
     <string name="s_sinformation">Enviar</string>
-    <string name="title_activity_functions_system">FunctionsSystem</string>
+    <string name="title_activity_functions_system">Funciones</string>
 
     <!-- Strings part Functions-->
     <string name="title_type1">View Type 1</string>
@@ -98,9 +98,22 @@
     <string name="f_title_settings">Configuracion</string>
     <string name="f_content_settings">Aqui puedes configurar todos los parametros de la aplicacion</string>
 
+    <string name="drawable_photo">photo_add_camera_icon</string>
+    <string name="f_title_photo">Haz una captura</string>
+    <string name="f_content_photo">Haz click para hacer una captura</string>
+
+    <string name="drawable_video">digital_video</string>
+    <string name="f_title_video">Haz un video</string>
+    <string name="f_content_video">Puedes realizar un video haciendo click aqui</string>
+
+    <string name="drawable_gallery">image_gallery_icon</string>
+    <string name="f_title_gallery">Galeria</string>
+    <string name="f_content_gallery">Galeria con las fotos y videos tomadas</string>
+
+
     <!-- Strings part info -->
 
-    <string name="title_activity_info_app">infoApp</string>
+    <string name="title_activity_info_app">Informacion</string>
     <string name="inf_title">Aqui podras encontrar toda la informacion de la aplicacion</string>
     <string name="inf_content">Esta aplicacion esta orientada a trabajar con un sistema servidor domotico
     para sacar partido de lo maximo posible a la hora de usabilidad del sistema entero.</string>

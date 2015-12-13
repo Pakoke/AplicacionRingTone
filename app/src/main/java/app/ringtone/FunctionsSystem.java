@@ -58,6 +58,27 @@ public class FunctionsSystem extends AppCompatActivity {
         data.mListener = new listenerActivitySettings(this.findViewById(R.id.grid_layout_type2));
         dataSet.add(data);
 
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_title_gallery);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_gallery), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_gallery);
+        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        dataSet.add(data);
+
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_title_photo);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_photo), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_photo);
+        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        dataSet.add(data);
+
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_title_video);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_video), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_video);
+        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        dataSet.add(data);
+
         return dataSet;
     }
 
