@@ -13,17 +13,19 @@ import Binders.SampleData;
 /**
  * Created by yqritc on 2015/04/20.
  */
-public class SampleEnumListAdapter
-        extends EnumListBindAdapter<SampleEnumListAdapter.SampleViewType> {
+public class SampleEnumListAdapter extends EnumListBindAdapter<SampleEnumListAdapter.SampleViewType> {
 
     enum SampleViewType {
-        SAMPLE1, SAMPLE2, SAMPLE3
+        //SAMPLE1,
+        SAMPLE2
+        //,SAMPLE3
     }
 
     public SampleEnumListAdapter() {
-        addAllBinder(new Sample1Binder(this),
-                new Sample2Binder(this),
-                new Sample3Binder(this));
+        addAllBinder(//new Sample1Binder(this),
+                new Sample2Binder(this)
+                //,new Sample3Binder(this)
+        );
     }
 
     public void setSample2Data(List<SampleData> dataSet) {
