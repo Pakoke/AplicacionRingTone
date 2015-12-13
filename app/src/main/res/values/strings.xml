@@ -81,7 +81,7 @@
     <string name="s_sinformation">Enviar</string>
     <string name="title_activity_functions_system">FunctionsSystem</string>
 
-    <!-- Strings part Options-->
+    <!-- Strings part Functions-->
     <string name="title_type1">View Type 1</string>
     <string name="title_type2">View Type 2</string>
     <string name="title_type3">View Type 3</string>
@@ -92,4 +92,12 @@
     <string name="drawable_info">icon_info_simple</string>
     <string name="f_content_information">Aqui puedes ver toda la info de la aplicacion</string>
     <string name="f_informacion_app">Click para ver la info</string>
+    <string name="title_activity_info_app">infoApp</string>
+
+    <!-- Strings part info -->
+
+    <string name="inf_title">Aqui podras encontrar toda la informacion de la aplicacion</string>
+    <string name="inf_content">Esta aplicacion esta orientada a trabajar con un sistema servidor domotico
+    para sacar partido de lo maximo posible a la hora de usabilidad del sistema entero.</string>
+
 </resources>

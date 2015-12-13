@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/activity_vertical_margin"
     android:layout_marginBottom="@dimen/activity_vertical_margin"
-    android:background="@android:color/holo_blue_dark">
+    android:background="@android:color/holo_blue_dark"
+    >
 
     <TextView
         android:id="@+id/title_type2"
@@ -14,14 +16,16 @@
         android:background="@android:color/holo_red_light"
         android:textColor="@android:color/white"
         android:textSize="20sp"
-        android:textAlignment="center"/>
+        android:textAlignment="center"
+        />
 
     <TextView
         android:id="@+id/content_type2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:layout_margin="12dp"/>
+        android:layout_margin="12dp"
+        android:textAlignment="center"/>
 
     <ImageView
         android:id="@+id/image_type2"
@@ -30,7 +34,9 @@
         android:adjustViewBounds="true"
         android:contentDescription="@null"
         android:scaleType="fitCenter"
-        android:layout_margin="12dp"/>
+        android:layout_margin="12dp"
+        android:onClick="startActivityInfo"
+        android:clickable="true"/>
 
 
 </LinearLayout>
