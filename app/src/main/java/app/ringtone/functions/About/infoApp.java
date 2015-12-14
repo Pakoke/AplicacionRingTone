@@ -1,4 +1,4 @@
-package app.ringtone.functions;
+package app.ringtone.functions.About;
 
 import android.content.Intent;
 import android.os.Bundle;

@@ -8,8 +8,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import app.ringtone.functions.infoApp;
+import app.ringtone.functions.About.infoApp;
 import app.pacoke.aplicacionringtone.R;
+import app.ringtone.functions.gallery.GridViewGalleryActivity;
 import binders.SampleData;
 import factories.IntentFactory;
 import utilsApp.*;
@@ -62,7 +63,7 @@ public class FunctionsSystem extends AppCompatActivity {
         data.mTitle = getString(R.string.f_title_gallery);
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_gallery), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_gallery);
-        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        data.mListener = new listenerActivityGallery(this.findViewById(R.id.grid_layout_type2));
         dataSet.add(data);
 
         data = new SampleData();
@@ -98,6 +99,16 @@ public class FunctionsSystem extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = IntentFactory.createIntent(v.getContext(), setting_activity.class);
+            intent.putExtra("comeFrom",FunctionsSystem.class.getName());
+            startActivity(intent);
+        }
+    }
+    private class listenerActivityGallery implements View.OnClickListener{
+        View view;
+        public listenerActivityGallery(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            Intent intent = IntentFactory.createIntent(v.getContext(), GridViewGalleryActivity.class);
             intent.putExtra("comeFrom",FunctionsSystem.class.getName());
             startActivity(intent);
         }
