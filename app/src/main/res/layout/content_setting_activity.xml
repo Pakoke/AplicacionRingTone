@@ -13,7 +13,7 @@
     android:id="@+id/s_layout"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="aplicacionringtone.aplicacionringtone.setting_activity"
-    tools:showIn="@layout/activity_setting_activity">
+    tools:showIn="@layout/setting_activity">
 
     <com.rey.material.widget.EditText
         android:layout_width="match_parent"
@@ -33,10 +33,25 @@
     <com.rey.material.widget.EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/s_ip"
-        android:hint="@string/input_ip"
-        app:et_error="@string/error_ip"
-        app:et_helper="@string/help_ip"
+        android:id="@+id/s_pass"
+        android:theme="@style/Material.Widget.EditText"
+        android:hint="@string/input_pass"
+        app:et_error="@string/error_pass"
+        app:et_helper="@string/help_pass"
+        app:et_labelEnable="true"
+        app:et_supportMode="helperWithError"
+        app:et_supportTextColor="@android:color/background_dark"
+        app:et_supportTextAppearance="@android:color/background_dark"
+        app:et_labelTextColor="@android:color/background_dark"
+        />
+
+    <com.rey.material.widget.EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/s_address"
+        android:hint="@string/input_address"
+        app:et_error="@string/error_address"
+        app:et_helper="@string/help_address"
         app:et_labelEnable="true"
         app:theme="@style/Material.Widget.EditText"
         app:et_supportMode="helperWithError"
@@ -45,20 +60,6 @@
         app:et_supportTextAppearance="@android:color/background_dark"
         />
 
-    <com.rey.material.widget.EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/s_port"
-        android:hint="@string/input_port"
-        app:et_error="@string/error_port"
-        app:et_helper="@string/help_port"
-        app:et_supportTextColor="@android:color/background_dark"
-        app:et_labelTextColor="@android:color/background_dark"
-        app:et_supportTextAppearance="@android:color/background_dark"
-        app:et_labelEnable="true"
-        app:theme="@style/Material.Widget.EditText"
-        app:et_supportMode="helper"
-        />
     <com.rey.material.widget.EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

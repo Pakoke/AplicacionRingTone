@@ -1,18 +1,28 @@
 package app.ringtone;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import app.ringtone.functions.About.infoApp;
 import app.pacoke.aplicacionringtone.R;
 import app.ringtone.functions.gallery.GridViewGalleryActivity;
+import app.ringtone.functions.makephoto.RetrievePhotoManually;
 import binders.SampleData;
+import cz.msebera.android.httpclient.Header;
+import dtos.RingToneRestClient;
 import factories.IntentFactory;
+import settingsApp.SharedSettings;
 import utilsApp.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -67,9 +77,9 @@ public class FunctionsSystem extends AppCompatActivity {
         dataSet.add(data);
 
         data = new SampleData();
-        data.mTitle = getString(R.string.f_title_photo);
-        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_photo), "drawable", getPackageName());
-        data.mContent = getString(R.string.f_content_photo);
+        data.mTitle = getString(R.string.f_title_audio);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_audio), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_audio);
         data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
         dataSet.add(data);
 
@@ -78,11 +88,27 @@ public class FunctionsSystem extends AppCompatActivity {
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_video), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_video);
         data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+
         dataSet.add(data);
+
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_title_photo);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_photo), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_photo);
+        data.mListener = new listenerActivityMakePhoto(this.findViewById(R.id.grid_layout_type2));
+        dataSet.add(data);
+
+        data = new SampleData();
+        data.mTitle = getString(R.string.f_title_streaming);
+        data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_streaming), "drawable", getPackageName());
+        data.mContent = getString(R.string.f_content_streaming);
+        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        dataSet.add(data);
+
+
 
         return dataSet;
     }
-
 
     private class listenerActivityInfo implements View.OnClickListener{
         View view;
@@ -93,6 +119,18 @@ public class FunctionsSystem extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
+    private class listenerActivityMakePhoto implements View.OnClickListener{
+        View view;
+        public listenerActivityMakePhoto(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            final Context currentContext = v.getContext();
+            RetrievePhotoManually makephoto= new RetrievePhotoManually(v.getContext());
+            RingToneRestClient.get("cameramethods/UserImage",makephoto);
+        }
+    }
+
     private class listenerActivitySettings implements View.OnClickListener{
         View view;
         public listenerActivitySettings(View view){this.view=view;}
@@ -103,6 +141,7 @@ public class FunctionsSystem extends AppCompatActivity {
             startActivity(intent);
         }
     }
+
     private class listenerActivityGallery implements View.OnClickListener{
         View view;
         public listenerActivityGallery(View view){this.view=view;}

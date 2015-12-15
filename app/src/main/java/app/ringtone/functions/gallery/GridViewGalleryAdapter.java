@@ -1,9 +1,12 @@
 package app.ringtone.functions.gallery;
 
+import java.io.File;
 import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Context;
+import android.net.Uri;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,8 +58,7 @@ public class GridViewGalleryAdapter extends ArrayAdapter<GridItem> {
 
         GridItem item = mGridData.get(position);
         holder.titleTextView.setText(Html.fromHtml(item.getTitle()));
-
-        Picasso.with(mContext).load(item.getImage()).into(holder.imageView);
+        Picasso.with(mContext).load(new File(item.getImage())).into(holder.imageView);
         return row;
     }
 

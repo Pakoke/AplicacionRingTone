@@ -65,19 +65,22 @@
 
     <string name="error_user">Usuario no valido</string>
     <string name="help_user">El usuario solo puede contener alfanumericos</string>
-    <string name="input_user">Introduce tu usuario</string>
-    <string name="error_ip">La Ip no es valida</string>
-    <string name="help_ip">xxxx:xxxx:xxxx:xxxx</string>
-    <string name="input_ip">Introduce una ip</string>
+    <string name="input_user">Usuario</string>
+    <string name="error_address">Direccion no valida</string>
+    <string name="help_address">http://xxx…</string>
+    <string name="input_address">Direccion Web</string>
     <string name="error_port">El puerto solo puede ser numerico</string>
     <string name="help_port">xxxx</string>
-    <string name="input_port">Introduce un puerto</string>
-    <string name="error_email">El email tiene que ser valido</string>
+    <string name="input_port">Puerto</string>
+    <string name="error_email">Email</string>
     <string name="help_email">…@(gmail.com)</string>
     <string name="input_email">Introduce un email valido</string>
     <string name="error_phone">El telefono tiene que ser valido</string>
     <string name="help_phone">6xxxxxxxx</string>
-    <string name="input_phone">Introduce un movil local</string>
+    <string name="input_phone">Movil</string>
+    <string name="error_pass">La contraseña tiene que ser valida</string>
+    <string name="help_pass">Solo caracteres alfanumericos</string>
+    <string name="input_pass">Contraseña</string>
     <string name="s_sinformation">Enviar</string>
     <string name="title_activity_functions_system">Funciones</string>
 
@@ -110,6 +113,13 @@
     <string name="f_title_gallery">Galeria</string>
     <string name="f_content_gallery">Galeria con las fotos y videos tomadas</string>
 
+    <string name="drawable_audio">icon_mic</string>
+    <string name="f_title_audio">Mandar un audio</string>
+    <string name="f_content_audio">Haz click para mandar un audio para que se escuche en el telefonillo</string>
+
+    <string name="drawable_streaming">streaming_icon</string>
+    <string name="f_title_streaming">Ver camara en Streaming</string>
+    <string name="f_content_streaming">Haz click para ver mediante streaming la camara del telefonillo</string>
 
     <!-- Strings part info -->
 
@@ -117,10 +127,10 @@
     <string name="inf_title">Aqui podras encontrar toda la informacion de la aplicacion</string>
     <string name="inf_content">Esta aplicacion esta orientada a trabajar con un sistema servidor domotico
     para sacar partido de lo maximo posible a la hora de usabilidad del sistema entero.</string>
+
+    <!-- Strings part gallery -->
     <string name="title_activity_details">DetailsActivity</string>
     <string name="GalleryActivity">Galleria</string>
 
-
-    <!-- String part on gallery -->
 
 </resources>
