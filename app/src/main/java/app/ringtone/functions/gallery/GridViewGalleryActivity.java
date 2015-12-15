@@ -84,10 +84,10 @@ public class GridViewGalleryActivity extends AppCompatActivity {
             File[] files=(new File(params[0])).listFiles();
             GridItem item;
             for (int i = 0; i < files.length; i++) {
-
+                Uri uri=Uri.fromFile(files[i]);
                 item = new GridItem();
                 item.setTitle(files[i].getName());
-                item.setImage(files[i].getPath());
+                item.setImage(uri.getPath());
 
                 mGridData.add(item);
                 result = 1;
@@ -119,7 +119,7 @@ public class GridViewGalleryActivity extends AppCompatActivity {
             if (result == 1) {
                 mGridAdapter.setGridData(mGridData);
             } else {
-                Toast.makeText(GridViewGalleryActivity.this, "Failed to fetch data!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GridViewGalleryActivity.this, "No se ha encontrado ninguna imagen!", Toast.LENGTH_SHORT).show();
             }
             mProgressBar.setVisibility(View.GONE);
         }

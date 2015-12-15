@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+
 import app.pacoke.aplicacionringtone.R;
 
 public class DetailsActivity extends AppCompatActivity {
@@ -29,6 +31,9 @@ public class DetailsActivity extends AppCompatActivity {
         imageView = (ImageView) findViewById(R.id.grid_item_image);
         titleTextView.setText(Html.fromHtml(title));
 
-        Picasso.with(this).load(image).into(imageView);
+        Picasso.with(this)
+                .load(new File(image))
+                .error(R.drawable.error_icon)
+                .into(imageView);
     }
 }
