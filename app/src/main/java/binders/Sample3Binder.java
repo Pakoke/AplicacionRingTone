@@ -1,4 +1,4 @@
-package Binders;
+package binders;
 
 import com.squareup.picasso.Picasso;
 import com.yqritc.recyclerviewmultipleviewtypesadapter.DataBindAdapter;
