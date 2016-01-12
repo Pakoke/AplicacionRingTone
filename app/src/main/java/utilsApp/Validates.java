@@ -1,4 +1,4 @@
-package UtilsApp;
+package utilsApp;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -8,11 +8,12 @@ import java.util.regex.Pattern;
  */
 public class Validates {
 
+    private static CharSequence inputStr;
     public static Boolean validatePhone(String phoneNumber){
         Boolean isValid = false;
         //Initialize reg ex for phone number.
         String expression = "\\d{9}";
-        CharSequence inputStr = phoneNumber;
+        inputStr = phoneNumber;
         Pattern pattern = Pattern.compile(expression);
         Matcher matcher = pattern.matcher(inputStr);
         if(matcher.matches()){
@@ -24,7 +25,7 @@ public class Validates {
         Boolean isValid = false;
         //Initialize reg ex for phone number.
         String expression = "[a-zA-Z]+";
-        CharSequence inputStr = username;
+        inputStr = username;
         Pattern pattern = Pattern.compile(expression);
         Matcher matcher = pattern.matcher(inputStr);
         if(matcher.matches()){
@@ -36,7 +37,7 @@ public class Validates {
         Boolean isValid = false;
         //Initialize reg ex for phone number.
         String expression = "[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+";
-        CharSequence inputStr = email;
+        inputStr = email;
         Pattern pattern = Pattern.compile(expression);
         Matcher matcher = pattern.matcher(inputStr);
         if(matcher.matches()){
@@ -48,7 +49,7 @@ public class Validates {
         Boolean isValid = false;
         //Initialize reg ex for phone number.
         String expression = "(\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))\\.(\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))\\.(\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))\\.(\\d|[1-9]\\d|1\\d\\d|2([0-4]\\d|5[0-5]))";
-        CharSequence inputStr = ipAdress;
+        inputStr = ipAdress;
         Pattern pattern = Pattern.compile(expression);
         Matcher matcher = pattern.matcher(inputStr);
         if(matcher.matches()){
@@ -60,7 +61,7 @@ public class Validates {
         Boolean isValid = false;
         //Initialize reg ex for phone number.
         String expression = "\\d{2,4}";
-        CharSequence inputStr = portAdress;
+        inputStr = portAdress;
         Pattern pattern = Pattern.compile(expression);
         Matcher matcher = pattern.matcher(inputStr);
         if(matcher.matches()){

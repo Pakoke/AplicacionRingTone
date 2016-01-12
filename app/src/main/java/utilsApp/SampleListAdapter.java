@@ -1,7 +1,7 @@
-package UtilsApp;
+package utilsApp;
 
 import com.yqritc.recyclerviewmultipleviewtypesadapter.ListBindAdapter;
-import Binders.*;
+import binders.*;
 import java.util.List;
 
 /**

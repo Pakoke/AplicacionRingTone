@@ -1,4 +1,4 @@
-package UtilsApp;
+package utilsApp;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +8,6 @@ import android.widget.SpinnerAdapter;
 import com.rey.material.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Javi on 10/12/2015.

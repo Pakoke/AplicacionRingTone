@@ -1,4 +1,4 @@
-package UtilsApp;
+package utilsApp;
 
 
 import com.yqritc.recyclerviewmultipleviewtypesadapter.EnumMapBindAdapter;
@@ -6,10 +6,10 @@ import com.yqritc.recyclerviewmultipleviewtypesadapter.EnumMapBindAdapter;
 
 import java.util.List;
 
-import Binders.Sample1Binder;
-import Binders.Sample2Binder;
-import Binders.Sample3Binder;
-import Binders.SampleData;
+import binders.Sample1Binder;
+import binders.Sample2Binder;
+import binders.Sample3Binder;
+import binders.SampleData;
 
 /**
  * Created by yqritc on 2015/03/20.
