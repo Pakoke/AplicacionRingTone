@@ -7,17 +7,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.rey.material.app.BottomSheetDialog;
 
 import app.ringtone.functions.About.infoApp;
 import app.pacoke.aplicacionringtone.R;
 import app.ringtone.functions.gallery.GridViewGalleryActivity;
+import app.ringtone.functions.makeaudio.settingAudioActivity;
 import app.ringtone.functions.makephoto.RetrievePhotoManually;
+import app.ringtone.functions.makevideo.DialogVideoOptions;
 import binders.SampleData;
 import cz.msebera.android.httpclient.Header;
 import dtos.RingToneRestClient;
@@ -28,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FunctionsSystem extends AppCompatActivity {
-
+    public BottomSheetDialog mDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +60,8 @@ public class FunctionsSystem extends AppCompatActivity {
     private List<SampleData> getSampleData() {
         List<SampleData> dataSet = new ArrayList<>();
 
+        mDialog = new BottomSheetDialog(this);
+
         SampleData data = new SampleData();
         data.mTitle = getString(R.string.f_title_informacion);
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_info), "drawable", getPackageName());
@@ -80,14 +87,14 @@ public class FunctionsSystem extends AppCompatActivity {
         data.mTitle = getString(R.string.f_title_audio);
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_audio), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_audio);
-        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        data.mListener = new listenerActivityAudio(this.findViewById(R.id.grid_layout_type2));
         dataSet.add(data);
 
         data = new SampleData();
         data.mTitle = getString(R.string.f_title_video);
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_video), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_video);
-        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        data.mListener = new listenerActivityVideo(this.findViewById(R.id.grid_layout_type2));
 
         dataSet.add(data);
 
@@ -110,6 +117,16 @@ public class FunctionsSystem extends AppCompatActivity {
         return dataSet;
     }
 
+    private class listenerActivityVideo implements View.OnClickListener{
+        View view;
+        public listenerActivityVideo(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            DialogVideoOptions alert = new DialogVideoOptions();
+            alert.showDialog(v.getContext(), "Error de conexión al servidor");
+        }
+    }
+
     private class listenerActivityInfo implements View.OnClickListener{
         View view;
         public listenerActivityInfo(View view){this.view=view;}
@@ -127,7 +144,7 @@ public class FunctionsSystem extends AppCompatActivity {
         public void onClick(View v) {
             final Context currentContext = v.getContext();
             RetrievePhotoManually makephoto= new RetrievePhotoManually(v.getContext());
-            RingToneRestClient.get("cameramethods/UserImage",makephoto);
+            RingToneRestClient.get("cameramethods/UserImage", makephoto);
         }
     }
 
@@ -137,6 +154,18 @@ public class FunctionsSystem extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             Intent intent = IntentFactory.createIntent(v.getContext(), setting_activity.class);
+            intent.putExtra("comeFrom",FunctionsSystem.class.getName());
+            startActivity(intent);
+        }
+    }
+
+    private class listenerActivityAudio implements View.OnClickListener{
+        View view;
+        public listenerActivityAudio(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            settingAudioActivity audio = new settingAudioActivity();
+            Intent intent = IntentFactory.createIntent(v.getContext(), settingAudioActivity.class);
             intent.putExtra("comeFrom",FunctionsSystem.class.getName());
             startActivity(intent);
         }

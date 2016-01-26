@@ -126,17 +126,23 @@ public class setting_activity extends AppCompatActivity {
                     good=false;
                     text_pass.setError(getString(R.string.error_pass));
                 }
-                if(good){
-                    progress_send.start();
-                    SharedSettings.user = text_user.getText().toString();
-                    SharedSettings.pass = text_pass.getText().toString();
-                    SharedSettings.email = text_email.getText().toString();
-                    SharedSettings.phone = text_phone.getText().toString();
-                    SharedSettings.Base_Endpoint = text_address.getText().toString();
-                    new AsyncLogin().execute(
+                Log.d("Spinner",(String.valueOf(list_app.getSelectedItem().toString().contains("Correo"))));
+                if(list_app.getSelectedItem().toString().contains("Correo")){
+                    intentToFunction.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+                    startActivity(intentToFunction);
+                }else{
+                    if(good){
+                        progress_send.start();
+                        SharedSettings.user = text_user.getText().toString();
+                        SharedSettings.pass = text_pass.getText().toString();
+                        SharedSettings.email = text_email.getText().toString();
+                        SharedSettings.phone = text_phone.getText().toString();
+                        SharedSettings.Base_Endpoint = text_address.getText().toString();
+                        new AsyncLogin().execute(
                                 text_user.getText().toString(),text_pass.getText().toString(),text_phone.getText().toString(),text_email.getText().toString());
-
+                    }
                 }
+
                 //Wait to response and start the activity it's correct.
             }
         });

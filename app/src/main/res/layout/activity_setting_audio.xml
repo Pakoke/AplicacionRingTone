@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="app.ringtone.functions.makeaudio.settingAudioActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/sound_text_time"
+        android:id="@+id/sound_text"
+        android:layout_marginTop="87dp"
+        android:layout_below="@+id/button"
+        android:layout_centerHorizontal="true" />
+
+    <!-- use Material.Widget.Slider.Discrete style for discrete mode -->
+    <com.rey.material.widget.Slider
+        style="@style/Material.Widget.Slider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:enabled="false"
+        app:sl_minValue="0"
+        app:sl_maxValue="100"
+        app:sl_value="50"
+        app:sl_discreteMode="true"
+        app:sl_textSize="15dp"
+        app:sl_stepValue="1"
+        android:id="@+id/sound_slider"
+        android:layout_marginTop="23dp"
+        android:layout_below="@+id/sound_text"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <com.rey.material.widget.CheckBox
+        style="@style/Material.Drawable.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviado"
+        android:id="@+id/view"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/sound_slider"
+        android:layout_alignEnd="@+id/sound_slider"
+        android:layout_marginTop="64dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Grabar"
+        android:id="@+id/button"
+        android:layout_alignBottom="@+id/view"
+        android:layout_alignTop="@+id/view"
+        android:textSize="10dp"
+        android:onClick="onClickAudioRecord" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar"
+        android:id="@+id/button2"
+        android:textSize="10dp"
+        android:layout_alignTop="@+id/button"
+        android:layout_toRightOf="@+id/button"
+        android:layout_toEndOf="@+id/button"
+        android:layout_alignBottom="@+id/button" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/audio_play_stop"
+        android:src="@drawable/play_audio"
+        android:clickable="true"
+        android:onClick="onClickImageAudio"
+        android:nestedScrollingEnabled="true"
+        android:layout_alignRight="@+id/button"
+        android:layout_alignEnd="@+id/button"
+        android:layout_alignBottom="@+id/sound_text"
+        android:paddingBottom="70dp"
+        android:layout_below="@+id/button2" />
+
+    <com.rey.material.widget.RadioButton
+        style="@style/Material.Drawable.RadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/record_press"
+        android:layout_alignTop="@+id/audio_play_stop"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:enabled="false"/>
+
+</RelativeLayout>
