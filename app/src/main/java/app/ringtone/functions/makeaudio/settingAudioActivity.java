@@ -1,26 +1,26 @@
 package app.ringtone.functions.makeaudio;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.rey.material.widget.CheckBox;
+import com.rey.material.widget.ProgressView;
 import com.rey.material.widget.RadioButton;
 
+import java.io.File;
 import java.io.IOException;
 
 import app.pacoke.aplicacionringtone.R;
+import app.ringtone.FunctionsSystem;
+import factories.IntentFactory;
 import settingsApp.SharedSettings;
 
 public class settingAudioActivity extends AppCompatActivity {
@@ -30,14 +30,19 @@ public class settingAudioActivity extends AppCompatActivity {
     private ImageView imageplaystop;
     private ImageView imagerecord;
     private RadioButton buttonrecord;
+    private Button button_audio_send;
+    private CheckBox send_checkbox;
     private static Boolean stoped = false;
     private static Boolean recording = true;
+    private static Boolean send=true;
     private RecordButton mRecordButton = null;
     private MediaRecorder mRecorder = null;
-
+    private ProgressView progressbar;
     private PlayButton   mPlayButton = null;
     private MediaPlayer mPlayer = null;
-
+    private float mProgressStatus = 0;
+    private Thread audio_bar_thread;
+    private Boolean finish = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,36 +50,72 @@ public class settingAudioActivity extends AppCompatActivity {
         imageplaystop = (ImageView) findViewById(R.id.audio_play_stop);
         //imagerecord = (ImageView) findViewById(R.id.audio_record);
         buttonrecord = (RadioButton) findViewById(R.id.record_press);
+        button_audio_send = (Button) findViewById(R.id.audio_send_file);
+        send_checkbox = (CheckBox) findViewById(R.id.audio_checkbox_send);
+        progressbar = (ProgressView) findViewById(R.id.audio_progressbar);
     }
 
     public void onClickImageAudio(View view) {
-        if (stoped) {
+        if (!stoped) {
             imageplaystop.setImageResource(R.drawable.stop_audio);
-        } else {
+        }else{
             imageplaystop.setImageResource(R.drawable.play_audio);
         }
+        progressbar = (ProgressView) findViewById(R.id.audio_progressbar);
+        // Start lengthy operation in a background thread
+        /*
+        if(stoped){
+            mProgressStatus = 0;
+            progressbar.setProgress(mProgressStatus);
+        }else{
+            audio_bar_thread = new Thread(new Runnable() {
+                public void run() {
+                    float i = 0.0f;
+                    while (mProgressStatus < 100.0f) {
+                        // Update the progress bar
+                        View mHandler = findViewById(R.id.audio_activity_view);
+                        Runnable run = new Runnable() {
+                            public void run() {
+                                progressbar.setProgress(mProgressStatus);
+                            }
+                        };
+                        mHandler.post(run);
+                        mProgressStatus =i + 1.0f;
+                        try{
+                            this.wait(1000);
+                        }catch (Exception e){}
+                    }
+                }
+            });
+            audio_bar_thread.start();
+        }*/
+        onPlay(stoped);
         stoped = !stoped;
     }
 
     public void onClickAudioRecord(View view) {
         if(recording){
             buttonrecord.setChecked(true);
-            //imagerecord.setVisibility(View.VISIBLE);
         }else{
             buttonrecord.setChecked(false);
-            //imagerecord.setVisibility(View.INVISIBLE);
         }
+        onRecord(recording);
         recording=!recording;
     }
 
-    private class onClickAudioRecord implements View.OnClickListener {
+    public void onClickAudioSend(View view){
+        if(send){
+            if(mRecorder==null && new File(mFileName).exists())
+            {
+                sendFile ss = new sendFile(mFileName,getApplicationContext());
 
-        @Override
-        public void onClick(View v) {
-
+            }
+            send_checkbox.setChecked(true);
+        }else{
+            send_checkbox.setChecked(false);
         }
+        send = !send;
     }
-
 
     private void onRecord(boolean start) {
         if (start) {
@@ -119,13 +160,11 @@ public class settingAudioActivity extends AppCompatActivity {
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
         mRecorder.setOutputFile(mFileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-
         try {
             mRecorder.prepare();
         } catch (IOException e) {
             Log.e(LOG_TAG, "prepare() failed");
         }
-
         mRecorder.start();
     }
 
@@ -182,8 +221,8 @@ public class settingAudioActivity extends AppCompatActivity {
     public settingAudioActivity() {
         mFileName = SharedSettings.FolderInternal;
         //mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        Log.d(LOG_TAG,mFileName);
         mFileName += "audiorecordtest.aac";
+        Log.d(LOG_TAG,mFileName);
     }
 /*
     @Override
@@ -218,5 +257,12 @@ public class settingAudioActivity extends AppCompatActivity {
             mPlayer.release();
             mPlayer = null;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = IntentFactory.getFactory(FunctionsSystem.class.getName());
+        startActivity(intent);
     }
 }

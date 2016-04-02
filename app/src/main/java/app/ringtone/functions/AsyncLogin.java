@@ -28,6 +28,7 @@ public class AsyncLogin extends AsyncTask<String, Void, Integer> {
         String direccion="mainmethods/userAdd/"+params[0]+"&"+params[1]+"&"+params[2]+"&"+params[3];
         Integer result=0;
         try{
+            //RingToneRestClient.post();
             RingToneRestClient.get(direccion, null, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {

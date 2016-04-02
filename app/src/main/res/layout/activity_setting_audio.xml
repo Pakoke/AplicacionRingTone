@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="app.ringtone.functions.makeaudio.settingAudioActivity">
+    tools:context="app.ringtone.functions.makeaudio.settingAudioActivity"
+    android:id="@+id/audio_activity_view">
 
     <TextView
         android:layout_width="wrap_content"
@@ -26,13 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:enabled="false"
         app:sl_minValue="0"
         app:sl_maxValue="100"
         app:sl_value="50"
         app:sl_discreteMode="true"
         app:sl_textSize="15dp"
-        app:sl_stepValue="1"
+        app:sl_stepValue="5"
         android:id="@+id/sound_slider"
         android:layout_marginTop="23dp"
         android:layout_below="@+id/sound_text"
@@ -44,7 +44,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviado"
-        android:id="@+id/view"
+        android:id="@+id/audio_checkbox_send"
+        android:enabled="false"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/sound_slider"
         android:layout_alignEnd="@+id/sound_slider"
@@ -55,21 +56,24 @@
         android:layout_height="wrap_content"
         android:text="Grabar"
         android:id="@+id/button"
-        android:layout_alignBottom="@+id/view"
-        android:layout_alignTop="@+id/view"
+        android:layout_alignBottom="@+id/audio_checkbox_send"
+        android:layout_alignTop="@+id/audio_checkbox_send"
         android:textSize="10dp"
-        android:onClick="onClickAudioRecord" />
+        android:onClick="onClickAudioRecord"
+        android:layout_alignLeft="@+id/sound_slider"
+        android:layout_alignStart="@+id/sound_slider" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enviar"
-        android:id="@+id/button2"
+        android:id="@+id/audio_send_file"
         android:textSize="10dp"
-        android:layout_alignTop="@+id/button"
-        android:layout_toRightOf="@+id/button"
-        android:layout_toEndOf="@+id/button"
-        android:layout_alignBottom="@+id/button" />
+        android:onClick="onClickAudioSend"
+        android:layout_above="@+id/sound_text"
+        android:layout_alignLeft="@+id/sound_text"
+        android:layout_alignStart="@+id/sound_text"
+        android:layout_alignTop="@+id/button" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -83,7 +87,7 @@
         android:layout_alignEnd="@+id/button"
         android:layout_alignBottom="@+id/sound_text"
         android:paddingBottom="70dp"
-        android:layout_below="@+id/button2" />
+        android:layout_below="@+id/audio_send_file" />
 
     <com.rey.material.widget.RadioButton
         style="@style/Material.Drawable.RadioButton"
@@ -91,8 +95,23 @@
         android:layout_height="wrap_content"
         android:id="@+id/record_press"
         android:layout_alignTop="@+id/audio_play_stop"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2"
+        android:layout_alignLeft="@+id/audio_send_file"
+        android:layout_alignStart="@+id/audio_send_file"
         android:enabled="false"/>
+
+    <com.rey.material.widget.ProgressView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:enabled="false"
+        android:id="@+id/audio_progressbar"
+        android:layout_below="@+id/sound_slider"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="70dp"
+        app:pv_autostart="true"
+        app:pv_circular="false"
+        app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
+        app:pv_progressMode="determinate"/>
 
 </RelativeLayout>
