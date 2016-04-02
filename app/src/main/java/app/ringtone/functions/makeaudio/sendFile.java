@@ -40,7 +40,7 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
 
     @Override
     protected Integer doInBackground(String... params) {
-        String direccion="cameramethods/playAudio/"+params[0]+"&"+params[1]+"&"+params[2]+"&"+params[3];
+        String direccion="cameramethods/playAudio/";
         Integer result=0;
 
         File fileToUpload = new File(directionFileToUpload);

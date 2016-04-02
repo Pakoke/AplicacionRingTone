@@ -108,7 +108,7 @@ public class settingAudioActivity extends AppCompatActivity {
             if(mRecorder==null && new File(mFileName).exists())
             {
                 sendFile ss = new sendFile(mFileName,getApplicationContext());
-
+                ss.execute();
             }
             send_checkbox.setChecked(true);
         }else{
