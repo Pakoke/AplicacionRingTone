@@ -144,7 +144,7 @@ public class FunctionsSystem extends AppCompatActivity {
         public void onClick(View v) {
             final Context currentContext = v.getContext();
             RetrievePhotoManually makephoto= new RetrievePhotoManually(v.getContext());
-            RingToneRestClient.get("cameramethods/UserImage", makephoto);
+            RingToneRestClient.get("cameramethods/userImage", makephoto);
         }
     }
 

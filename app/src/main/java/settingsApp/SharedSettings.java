@@ -29,7 +29,6 @@ public class SharedSettings {
         if(!folder.exists()){
             folder.mkdirs();
         }
-
     }
 
 }
