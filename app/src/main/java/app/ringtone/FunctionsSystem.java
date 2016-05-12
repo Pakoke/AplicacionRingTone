@@ -23,6 +23,8 @@ import app.ringtone.functions.gallery.GridViewGalleryActivity;
 import app.ringtone.functions.makeaudio.settingAudioActivity;
 import app.ringtone.functions.makephoto.RetrievePhotoManually;
 import app.ringtone.functions.makevideo.DialogVideoOptions;
+import app.ringtone.functions.makevideo.RetrieveVideoManually;
+import app.ringtone.functions.stateServer.ServiceStateRing;
 import binders.SampleData;
 import cz.msebera.android.httpclient.Header;
 import dtos.RingToneRestClient;
@@ -38,6 +40,10 @@ public class FunctionsSystem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main_example);
+
+        //startService(IntentFactory.createIntent(this, ServiceStateRing.class));
+
+
         setContentView(R.layout.activity_functions_system);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -122,8 +128,9 @@ public class FunctionsSystem extends AppCompatActivity {
         public listenerActivityVideo(View view){this.view=view;}
         @Override
         public void onClick(View v) {
-            DialogVideoOptions alert = new DialogVideoOptions();
-            alert.showDialog(v.getContext(), "Error de conexión al servidor");
+            final Context currentContext = v.getContext();
+            RetrieveVideoManually makevideo= new RetrieveVideoManually(v.getContext());
+            RingToneRestClient.get("cameramethods/userVideo", makevideo);
         }
     }
 
@@ -144,7 +151,7 @@ public class FunctionsSystem extends AppCompatActivity {
         public void onClick(View v) {
             final Context currentContext = v.getContext();
             RetrievePhotoManually makephoto= new RetrievePhotoManually(v.getContext());
-            RingToneRestClient.get("cameramethods/UserImage", makephoto);
+            RingToneRestClient.get("cameramethods/userImage", makephoto);
         }
     }
 

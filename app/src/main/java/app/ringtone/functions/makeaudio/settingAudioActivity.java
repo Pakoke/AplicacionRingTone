@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.rey.material.widget.RadioButton;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
 import app.pacoke.aplicacionringtone.R;
 import app.ringtone.FunctionsSystem;
@@ -32,6 +34,7 @@ public class settingAudioActivity extends AppCompatActivity {
     private RadioButton buttonrecord;
     private Button button_audio_send;
     private CheckBox send_checkbox;
+    private CheckBox ring_checkbox;
     private static Boolean stoped = false;
     private static Boolean recording = true;
     private static Boolean send=true;
@@ -47,12 +50,14 @@ public class settingAudioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting_audio);
-        imageplaystop = (ImageView) findViewById(R.id.audio_play_stop);
+
+        //imageplaystop = (ImageView) findViewById(R.id.audio_play_stop);
         //imagerecord = (ImageView) findViewById(R.id.audio_record);
         buttonrecord = (RadioButton) findViewById(R.id.record_press);
         button_audio_send = (Button) findViewById(R.id.audio_send_file);
         send_checkbox = (CheckBox) findViewById(R.id.audio_checkbox_send);
-        progressbar = (ProgressView) findViewById(R.id.audio_progressbar);
+        ring_checkbox = (CheckBox) findViewById(R.id.audio_checkbox_ring);
+        //progressbar = (ProgressView) findViewById(R.id.audio_progressbar);
     }
 
     public void onClickImageAudio(View view) {
@@ -61,34 +66,8 @@ public class settingAudioActivity extends AppCompatActivity {
         }else{
             imageplaystop.setImageResource(R.drawable.play_audio);
         }
-        progressbar = (ProgressView) findViewById(R.id.audio_progressbar);
+        //progressbar = (ProgressView) findViewById(R.id.audio_progressbar);
         // Start lengthy operation in a background thread
-        /*
-        if(stoped){
-            mProgressStatus = 0;
-            progressbar.setProgress(mProgressStatus);
-        }else{
-            audio_bar_thread = new Thread(new Runnable() {
-                public void run() {
-                    float i = 0.0f;
-                    while (mProgressStatus < 100.0f) {
-                        // Update the progress bar
-                        View mHandler = findViewById(R.id.audio_activity_view);
-                        Runnable run = new Runnable() {
-                            public void run() {
-                                progressbar.setProgress(mProgressStatus);
-                            }
-                        };
-                        mHandler.post(run);
-                        mProgressStatus =i + 1.0f;
-                        try{
-                            this.wait(1000);
-                        }catch (Exception e){}
-                    }
-                }
-            });
-            audio_bar_thread.start();
-        }*/
         onPlay(stoped);
         stoped = !stoped;
     }
@@ -107,10 +86,20 @@ public class settingAudioActivity extends AppCompatActivity {
         if(send){
             if(mRecorder==null && new File(mFileName).exists())
             {
-                sendFile ss = new sendFile(mFileName,getApplicationContext());
-                ss.execute();
+                try{
+                    sendFile ss = new sendFile(mFileName,getApplicationContext());
+                    ss.setSpeaker(!ring_checkbox.isChecked());
+                    Log.i(LOG_TAG,Boolean.toString(ring_checkbox.isChecked()));
+                    ss.execute();
+                    send_checkbox.setChecked(true);
+                }catch (Exception e){
+                    Log.i(LOG_TAG,e.getMessage());
+                }
+
+            }else{
+
             }
-            send_checkbox.setChecked(true);
+
         }else{
             send_checkbox.setChecked(false);
         }
@@ -155,11 +144,21 @@ public class settingAudioActivity extends AppCompatActivity {
     }
 
     private void startRecording() {
+
+        mFileName = SharedSettings.FolderInternal;
+        //mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
+        Calendar c = Calendar.getInstance();
+        mFileName += "audiorecordtest"+c.get(Calendar.HOUR)+"_"+c.get(Calendar.MINUTE)+"_"+c.get(Calendar.SECOND)+".aac";
+        Log.d(LOG_TAG,mFileName);
+
         mRecorder = new MediaRecorder();
         mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
+        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
         mRecorder.setOutputFile(mFileName);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
+        mRecorder.setAudioChannels(2);
+        mRecorder.setAudioSamplingRate(64);
+        Log.i(LOG_TAG, "Grabando " + mFileName);
         try {
             mRecorder.prepare();
         } catch (IOException e) {
@@ -172,6 +171,7 @@ public class settingAudioActivity extends AppCompatActivity {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
+        Log.i(LOG_TAG, "Grabado " + mFileName);
     }
 
     class RecordButton extends Button {
@@ -219,32 +219,8 @@ public class settingAudioActivity extends AppCompatActivity {
     }
 
     public settingAudioActivity() {
-        mFileName = SharedSettings.FolderInternal;
-        //mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
-        mFileName += "audiorecordtest.aac";
-        Log.d(LOG_TAG,mFileName);
-    }
-/*
-    @Override
-    public void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
 
-        LinearLayout ll = new LinearLayout(this);
-        mRecordButton = new RecordButton(this);
-        ll.addView(mRecordButton,
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        0));
-        mPlayButton = new PlayButton(this);
-        ll.addView(mPlayButton,
-                new LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        0));
-        setContentView(ll);
     }
-*/
     @Override
     public void onPause() {
         super.onPause();

@@ -14,11 +14,11 @@ public class SharedSettings {
     public static final List<String> appsToInteract = new ArrayList<String>();
     //public static String FolderInternal = "/sdcard/Pictures";
     public static String FolderInternal = Environment.getExternalStorageDirectory().getAbsolutePath()+"/RingTonesImages/";
-    public static String Base_Endpoint = "http://10.0.2.2:8080/Rest_ServiceServerRingTone/RingTone/";
-    public static String user=null;
-    public static String pass=null;
-    public static String email=null;
-    public static String phone=null;
+    public static String Base_Endpoint = "http://192.168.43.16:8080/Rest_ServiceServerRingTone/RingTone/";
+    public static String user="javier";
+    public static String pass="javier";
+    public static String email="fraruide@us.es";
+    public static String phone="657611073";
     public static void initaliceParameters(){
         initialiceAppsInteract();
     }
@@ -29,7 +29,6 @@ public class SharedSettings {
         if(!folder.exists()){
             folder.mkdirs();
         }
-
     }
 
 }

@@ -11,33 +11,7 @@
     tools:context="app.ringtone.functions.makeaudio.settingAudioActivity"
     android:id="@+id/audio_activity_view">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/sound_text_time"
-        android:id="@+id/sound_text"
-        android:layout_marginTop="87dp"
-        android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true" />
-
     <!-- use Material.Widget.Slider.Discrete style for discrete mode -->
-    <com.rey.material.widget.Slider
-        style="@style/Material.Widget.Slider"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        app:sl_minValue="0"
-        app:sl_maxValue="100"
-        app:sl_value="50"
-        app:sl_discreteMode="true"
-        app:sl_textSize="15dp"
-        app:sl_stepValue="5"
-        android:id="@+id/sound_slider"
-        android:layout_marginTop="23dp"
-        android:layout_below="@+id/sound_text"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
 
     <com.rey.material.widget.CheckBox
         style="@style/Material.Drawable.CheckBox"
@@ -46,22 +20,31 @@
         android:text="Enviado"
         android:id="@+id/audio_checkbox_send"
         android:enabled="false"
+        android:layout_marginTop="78dp"
         android:layout_alignParentTop="true"
-        android:layout_alignRight="@+id/sound_slider"
-        android:layout_alignEnd="@+id/sound_slider"
-        android:layout_marginTop="64dp" />
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <com.rey.material.widget.CheckBox
+        style="@style/Material.Drawable.CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Timbre"
+        android:id="@+id/audio_checkbox_ring"
+        android:layout_below="@+id/audio_send_file"
+        android:layout_alignRight="@+id/audio_send_file"
+        android:layout_alignEnd="@+id/audio_send_file" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Grabar"
         android:id="@+id/button"
-        android:layout_alignBottom="@+id/audio_checkbox_send"
-        android:layout_alignTop="@+id/audio_checkbox_send"
         android:textSize="10dp"
         android:onClick="onClickAudioRecord"
-        android:layout_alignLeft="@+id/sound_slider"
-        android:layout_alignStart="@+id/sound_slider" />
+        android:layout_alignTop="@+id/audio_checkbox_send"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -70,48 +53,17 @@
         android:id="@+id/audio_send_file"
         android:textSize="10dp"
         android:onClick="onClickAudioSend"
-        android:layout_above="@+id/sound_text"
-        android:layout_alignLeft="@+id/sound_text"
-        android:layout_alignStart="@+id/sound_text"
-        android:layout_alignTop="@+id/button" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/audio_play_stop"
-        android:src="@drawable/play_audio"
-        android:clickable="true"
-        android:onClick="onClickImageAudio"
-        android:nestedScrollingEnabled="true"
-        android:layout_alignRight="@+id/button"
-        android:layout_alignEnd="@+id/button"
-        android:layout_alignBottom="@+id/sound_text"
-        android:paddingBottom="70dp"
-        android:layout_below="@+id/audio_send_file" />
+        android:layout_alignTop="@+id/button"
+        android:layout_centerHorizontal="true" />
 
     <com.rey.material.widget.RadioButton
         style="@style/Material.Drawable.RadioButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/record_press"
-        android:layout_alignTop="@+id/audio_play_stop"
-        android:layout_alignLeft="@+id/audio_send_file"
-        android:layout_alignStart="@+id/audio_send_file"
-        android:enabled="false"/>
-
-    <com.rey.material.widget.ProgressView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
         android:enabled="false"
-        android:id="@+id/audio_progressbar"
-        android:layout_below="@+id/sound_slider"
+        android:layout_below="@+id/button"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="70dp"
-        app:pv_autostart="true"
-        app:pv_circular="false"
-        app:pv_progressStyle="@style/Material.Drawable.CircularProgress"
-        app:pv_progressMode="determinate"/>
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

@@ -14,7 +14,7 @@ android {
         }
     }
     compileSdkVersion 23
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "app.pacoke.aplicacionringtone"
         minSdkVersion 15
@@ -26,6 +26,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug{
+            debuggable true
         }
     }
     compileOptions {

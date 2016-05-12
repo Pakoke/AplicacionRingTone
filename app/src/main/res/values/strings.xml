@@ -134,5 +134,9 @@
 
     <!-- Strings parts of audio functions -->
     <string name="sound_text_time">Tiempo de grabacion</string>
+    <string name="custom_notification">Se ha realizado una llamada a su domicilio</string>
+    <string name="collapsed">Llamada en su casa</string>
+    <string name="expanded">Esta es la notificacion expandida</string>
+    <string name="expanded_image">Two Androids on top of each other. Symbolises an expanded notification.</string>
 
 </resources>

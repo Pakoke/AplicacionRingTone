@@ -18,6 +18,7 @@ public class RingToneRestClient {
         client.get(getAbsoluteUrl(url), params, responseHandler);
     }
     public static void get(String url, AsyncHttpResponseHandler responseHandler) {
+        client.setTimeout(20000);
         client.get(getAbsoluteUrl(url), responseHandler);
     }
 

@@ -17,6 +17,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 import cz.msebera.android.httpclient.Header;
+import cz.msebera.android.httpclient.entity.ContentType;
 import dtos.RingToneRestClient;
 
 /**
@@ -24,9 +25,11 @@ import dtos.RingToneRestClient;
  */
 public class sendFile extends AsyncTask<String, Void, Integer>{
 
-    private JSONObject responsejson=null;
+    private static final String LOG_TAG = "AudioRecordSendToServer";
+    private JSONObject responsejson=new JSONObject();
     private String directionFileToUpload="";
     private Context contextWhereCall = null;
+    private Boolean speaker = true;
 
     public sendFile(String directionFileToUpload)
     {
@@ -37,6 +40,10 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
         this.directionFileToUpload = directionFileToUpload;
         this.contextWhereCall = contextWhereCall;
     }
+    
+    public void setSpeaker(Boolean speaker){
+        this.speaker = speaker;
+    }
 
     @Override
     protected Integer doInBackground(String... params) {
@@ -44,12 +51,17 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
         Integer result=0;
 
         File fileToUpload = new File(directionFileToUpload);
+        Log.i(LOG_TAG, "Grabando " + directionFileToUpload);
+
         RequestParams paramsa = new RequestParams();
         if(fileToUpload.exists())
         {
             try {
                 paramsa.put("file", fileToUpload);
-            } catch (FileNotFoundException e) {
+                paramsa.put("name",fileToUpload.getName());
+                paramsa.put("speaker",String.valueOf(speaker));
+                //paramsa.put("filenamedfdf",directionFileToUpload);
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -76,7 +88,7 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
                     return false;
                 }
             });
-            RingToneRestClient.get(direccion, null, new JsonHttpResponseHandler() {
+            /*RingToneRestClient.get(direccion, null, new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     // If the response is JSONObject instead of expected JSONArray
@@ -93,13 +105,13 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
                     return false;
                 }
 
-            });
+            });*/
         }catch (Exception e){
             Log.d("Excepcion", e.toString());
         }
-        Log.d("http",responsejson.toString());
+        //Log.d("http",responsejson.toString());
 
-        if(responsejson==null){
+        /*if(responsejson==null){
             result=0;
         }else{
             try {
@@ -111,7 +123,7 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         return result;
     }
 

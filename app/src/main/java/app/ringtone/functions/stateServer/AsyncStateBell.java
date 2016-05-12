@@ -1,9 +1,7 @@
-package app.ringtone.functions;
+package app.ringtone.functions.stateServer;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -14,19 +12,17 @@ import cz.msebera.android.httpclient.Header;
 import dtos.RingToneRestClient;
 
 /**
- * Created by Javi on 03/01/2016.
+ * Created by Javi on 12/05/2016.
  */
-public class AsyncLogin extends AsyncTask<String, Void, Integer> {
+public class AsyncStateBell extends AsyncTask<String, Void, Boolean>{
 
-    public JSONObject responsejson=null;
-    public static String ds="";
-    public AsyncLogin(){}
+    public JSONObject responsejson;
 
+    public AsyncStateBell(){}
     @Override
-    protected Integer doInBackground(String... params) {
-        //userAdd/{name}&{password}&{phone}&{email}
-        String direccion="mainmethods/userAdd/"+params[0]+"&"+params[1]+"&"+params[2]+"&"+params[3];
-        Integer result=0;
+    protected Boolean doInBackground(String... params) {
+        String direccion="cameramethods/stateRing/";
+        Boolean result=false;
         try{
             //RingToneRestClient.post();
             RingToneRestClient.get(direccion, null, new JsonHttpResponseHandler() {
@@ -53,14 +49,11 @@ public class AsyncLogin extends AsyncTask<String, Void, Integer> {
         Log.d("http",responsejson.toString());
 
         if(responsejson==null){
-            result=0;
+            result=false;
         }else{
             try {
-                Boolean temp=(Boolean) responsejson.get("registered");
-                if(temp)
-                    result=1;
-                else
-                    result=0;
+                Boolean temp=(Boolean) responsejson.get("statering");
+                result = temp;
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -69,9 +62,9 @@ public class AsyncLogin extends AsyncTask<String, Void, Integer> {
     }
 
     @Override
-    protected void onPostExecute(Integer result) {
+    protected void onPostExecute(Boolean result) {
         //At the end of doinBackground call this method to make something more
-        if(result==1){
+        if(result==true){
             //intentToFunction.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             //startActivity(intentToFunction);
         }else{
