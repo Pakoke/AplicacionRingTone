@@ -25,6 +25,7 @@ import app.ringtone.functions.makephoto.RetrievePhotoManually;
 import app.ringtone.functions.makevideo.DialogVideoOptions;
 import app.ringtone.functions.makevideo.RetrieveVideoManually;
 import app.ringtone.functions.stateServer.ServiceStateRing;
+import app.ringtone.functions.videostreamer.StreamerSetting;
 import binders.SampleData;
 import cz.msebera.android.httpclient.Header;
 import dtos.RingToneRestClient;
@@ -115,12 +116,22 @@ public class FunctionsSystem extends AppCompatActivity {
         data.mTitle = getString(R.string.f_title_streaming);
         data.mDrawableResId = getResources().getIdentifier(getString(R.string.drawable_streaming), "drawable", getPackageName());
         data.mContent = getString(R.string.f_content_streaming);
-        data.mListener = new listenerActivityInfo(this.findViewById(R.id.grid_layout_type2));
+        data.mListener = new listenerActivityVideoStreamer(this.findViewById(R.id.grid_layout_type2));
         dataSet.add(data);
 
 
 
         return dataSet;
+    }
+
+    private class listenerActivityVideoStreamer implements View.OnClickListener{
+        View view;
+        public listenerActivityVideoStreamer(View view){this.view=view;}
+        @Override
+        public void onClick(View v) {
+            Intent intent = IntentFactory.createIntent(v.getContext(), StreamerSetting.class);
+            startActivity(intent);
+        }
     }
 
     private class listenerActivityVideo implements View.OnClickListener{

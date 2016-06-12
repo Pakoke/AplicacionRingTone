@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="app.pacoke.aplicacionringtone"
-    android:versionCode="2"
-    android:versionName="2.0">
+    android:versionCode="3"
+    android:versionName="3.0">
 
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -27,34 +28,44 @@
         <activity
             android:name="app.ringtone.setting_activity"
             android:label="@string/title_activity_setting_activity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="app.ringtone.FunctionsSystem"
             android:label="@string/title_activity_functions_system"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="app.ringtone.functions.About.infoApp"
             android:label="@string/title_activity_info_app"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="app.ringtone.functions.gallery.DetailsActivity"
             android:label="@string/title_activity_details"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="app.ringtone.functions.gallery.GridViewGalleryActivity"
             android:label="@string/GalleryActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <service
             android:name="app.ringtone.functions.makephoto.RetrieveInformationService"
-            android:exported="false"/>
+            android:exported="false" />
 
-
-        <activity android:name="app.ringtone.functions.makeaudio.settingAudioActivity"/>
+        <activity android:name="app.ringtone.functions.makeaudio.settingAudioActivity" />
 
         <service
             android:name="app.ringtone.functions.stateServer.ServiceStateRing"
-            android:exported="false"/>
+            android:exported="false" />
+
+        <activity
+            android:name="app.ringtone.functions.videostreamer.StreamerSetting"
+            android:label="@string/title_activity_streamer_setting"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name="app.ringtone.functions.videostreamer.FullscreenActivity"
+            android:label="FullScreenStreamer"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="landscape"/>
+
     </application>
 
 </manifest>

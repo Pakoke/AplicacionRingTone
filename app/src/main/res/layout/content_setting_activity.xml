@@ -36,6 +36,7 @@
         android:id="@+id/s_pass"
         android:theme="@style/Material.Widget.EditText"
         android:hint="@string/input_pass"
+        android:inputType="textPassword"
         app:et_error="@string/error_pass"
         app:et_helper="@string/help_pass"
         app:et_labelEnable="true"

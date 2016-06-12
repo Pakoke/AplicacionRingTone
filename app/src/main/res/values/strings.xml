@@ -138,5 +138,7 @@
     <string name="collapsed">Llamada en su casa</string>
     <string name="expanded">Esta es la notificacion expandida</string>
     <string name="expanded_image">Two Androids on top of each other. Symbolises an expanded notification.</string>
+    <string name="title_activity_streamer_setting">StreamerSetting</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

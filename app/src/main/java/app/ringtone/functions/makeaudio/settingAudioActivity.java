@@ -95,11 +95,9 @@ public class settingAudioActivity extends AppCompatActivity {
                 }catch (Exception e){
                     Log.i(LOG_TAG,e.getMessage());
                 }
-
             }else{
 
             }
-
         }else{
             send_checkbox.setChecked(false);
         }

@@ -1,0 +1,77 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+    <ImageView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/fullscreen_content_controls"
+        android:contentDescription="Vista para mostrar la informacion enviada por la RaspberryPi" />
+    <GridLayout
+        android:id="@+id/fullscreen_content_controls"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:columnCount="4"
+        android:rowCount="1">
+        <ImageButton android:id="@+id/setting_streamer_fullscreen" android:layout_width="103dp" android:layout_height="match_parent"
+            android:layout_column="0"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_row="0"
+            android:background="@drawable/config"
+            android:contentDescription="Activar las configuracion de la camara(desactivado)"
+            android:scaleType="fitCenter"
+            android:onClick="configclick" />
+
+        <ImageButton android:id="@+id/play_streamer_fullscreen" android:layout_width="100dp" android:layout_height="match_parent"
+            android:layout_column="1"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_row="0"
+            android:background="@drawable/video"
+            android:contentDescription="boton para activar la captura continua"
+            android:onClick="clickoldplay" />
+
+        <ImageButton android:id="@+id/photo_streamer_fullscreen" android:layout_width="98dp" android:layout_height="match_parent"
+            android:layout_column="2"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_row="0"
+            android:background="@drawable/camera"
+            android:contentDescription="boton para realizar una fotografia de la captura que se esta mostrando en ese momento."
+            android:onClick="updateImage" />
+
+        <ImageButton android:id="@+id/save_streamer_fullscreen" android:layout_width="103dp" android:layout_height="match_parent"
+            android:layout_column="3"
+            android:layout_marginBottom="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="15dp"
+            android:layout_row="0"
+            android:adjustViewBounds="false"
+            android:background="@drawable/disk"
+            android:contentDescription="guardar una captura de la camara."
+            android:scaleType="fitCenter"
+            android:onClick="saveimage" />
+
+    </GridLayout>
+
+</RelativeLayout>
