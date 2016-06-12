@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.rey.material.widget.CheckBox;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,6 +31,7 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
     private String directionFileToUpload="";
     private Context contextWhereCall = null;
     private Boolean speaker = true;
+    public CheckBox sendCheckBox;
 
     public sendFile(String directionFileToUpload)
     {
@@ -44,6 +46,8 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
     public void setSpeaker(Boolean speaker){
         this.speaker = speaker;
     }
+
+
 
     @Override
     protected Integer doInBackground(String... params) {
@@ -77,6 +81,7 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
                 public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                     // If the response is JSONObject instead of expected JSONArray
                     responsejson = response;
+
                 }
 
                 @Override
@@ -88,53 +93,21 @@ public class sendFile extends AsyncTask<String, Void, Integer>{
                     return false;
                 }
             });
-            /*RingToneRestClient.get(direccion, null, new JsonHttpResponseHandler() {
-                @Override
-                public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                    // If the response is JSONObject instead of expected JSONArray
-                    responsejson = response;
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, Throwable throwable, JSONObject errorResponse) {
-
-                }
-
-                @Override
-                public boolean getUseSynchronousMode() {
-                    return false;
-                }
-
-            });*/
+            result = 1;
         }catch (Exception e){
             Log.d("Excepcion", e.toString());
         }
-        //Log.d("http",responsejson.toString());
 
-        /*if(responsejson==null){
-            result=0;
-        }else{
-            try {
-                Boolean temp=(Boolean) responsejson.get("registered");
-                if(temp)
-                    result=1;
-                else
-                    result=0;
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }*/
         return result;
     }
 
     @Override
     protected void onPostExecute(Integer result) {
         if(result==1){
-            //intentToFunction.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            //startActivity(intentToFunction);
+            this.sendCheckBox.setChecked(true);
         }else{
-            //Toast.makeText(getApplicationContext(), "La aplicacion no puede encontrar el servidor.", Toast.LENGTH_SHORT).show();
-            //finish();
+            this.sendCheckBox.setChecked(false);
+            Toast.makeText(contextWhereCall, "Se ha producido un error al mandar el fichero.", Toast.LENGTH_SHORT).show();
         }
     }
 }

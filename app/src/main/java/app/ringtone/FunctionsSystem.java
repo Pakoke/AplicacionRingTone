@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.loopj.android.http.AsyncHttpClient;
@@ -142,6 +143,7 @@ public class FunctionsSystem extends AppCompatActivity {
             final Context currentContext = v.getContext();
             RetrieveVideoManually makevideo= new RetrieveVideoManually(v.getContext());
             RingToneRestClient.get("cameramethods/userVideo", makevideo);
+
         }
     }
 
@@ -150,6 +152,7 @@ public class FunctionsSystem extends AppCompatActivity {
         public listenerActivityInfo(View view){this.view=view;}
         @Override
         public void onClick(View v) {
+            v.startAnimation(AnimationUtils.loadAnimation(v.getContext(), R.anim.click_animation));
             Intent intent = IntentFactory.createIntent(v.getContext(), infoApp.class);
             startActivity(intent);
         }

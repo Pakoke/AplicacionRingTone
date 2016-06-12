@@ -109,7 +109,7 @@
     <string name="f_title_video">Haz un video</string>
     <string name="f_content_video">Puedes realizar un video haciendo click aqui</string>
 
-    <string name="drawable_gallery">image_gallery_icon</string>
+    <string name="drawable_gallery">gallery_icon_black</string>
     <string name="f_title_gallery">Galeria</string>
     <string name="f_content_gallery">Galeria con las fotos y videos tomadas</string>
 
@@ -140,5 +140,16 @@
     <string name="expanded_image">Two Androids on top of each other. Symbolises an expanded notification.</string>
     <string name="title_activity_streamer_setting">StreamerSetting</string>
     <string name="action_settings">Settings</string>
+    <string name="drawable_audio_list">music_512</string>
+    <string name="progress_dialog_saving">Guardando</string>
+    <string name="no_space_error">espacio insuficiente</string>
+    <string name="write_error">error de escitura</string>
+    <string name="too_small_error">no se puede guarda el fichero necesita durar mas</string>
+    <string name="alert_ok_button">ok alert</string>
+    <string name="alert_title_failure">Fallo</string>
+    <string name="save_success_message">guardado correctamente</string>
+    <string name="artist_name">Pacoke</string>
+    <string name="alert_title_success">Alerta</string>
+    <string name="no_unique_filename">fichero no unico</string>
 
 </resources>

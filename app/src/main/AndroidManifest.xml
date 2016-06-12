@@ -32,7 +32,8 @@
         <activity
             android:name="app.ringtone.FunctionsSystem"
             android:label="@string/title_activity_functions_system"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+            android:clearTaskOnLaunch ="true"/>
         <activity
             android:name="app.ringtone.functions.About.infoApp"
             android:label="@string/title_activity_info_app"
@@ -50,7 +51,9 @@
             android:name="app.ringtone.functions.makephoto.RetrieveInformationService"
             android:exported="false" />
 
-        <activity android:name="app.ringtone.functions.makeaudio.settingAudioActivity" />
+        <activity android:name="app.ringtone.functions.makeaudio.settingAudioActivity"
+            android:clearTaskOnLaunch ="true"
+            />
 
         <service
             android:name="app.ringtone.functions.stateServer.ServiceStateRing"
