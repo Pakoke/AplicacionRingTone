@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/activity_content_videostreamer"
+    android:layout_row="10"
+    android:layout_column="1"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="app.ringtone.functions.videostreamer.StreamerSetting"
+    tools:showIn="@layout/activity_streamer_setting"
+    android:rowCount="10">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="70dp"
+        android:layout_row="0"
+        android:layout_marginTop="5dp">
+        <EditText android:id="@+id/ip_videostreamer" android:layout_width="280dp" android:layout_height="wrap_content" android:hint="IP address" android:singleLine="true" android:layout_weight="1.0"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp" />
+
+        <ImageButton android:id="@+id/connect_videostreamer" android:background="@drawable/connect" android:layout_width="50dp" android:layout_height="wrap_content" android:text="Connect" android:onClick="ConnectButton"/>
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_column="0"
+        android:layout_row="1"
+        android:layout_marginLeft="10dp">
+
+        <CheckBox android:id="@+id/checkBox1_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Auto connect"
+            android:layout_row="2"
+            android:layout_column="0" />
+
+        <CheckBox android:id="@+id/chkmjpeg_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:checked="false" android:text="MJPEG" android:singleLine="true"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginLeft="5dp" />
+    </LinearLayout>
+
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_row="2"
+        android:layout_marginLeft="10dp">
+        <TextView android:id="@+id/textViewUsername_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Username:" />
+        <EditText android:id="@+id/username_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="pi" android:hint="Username" android:ems="10"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_row="3"
+        android:layout_marginLeft="10dp">
+        <TextView android:id="@+id/textViewPass_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Password:" />
+        <EditText android:id="@+id/password_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="raspberry" android:hint="Password" android:ems="10" android:inputType="textPassword"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_row="4"
+        android:layout_marginLeft="10dp">
+        <TextView android:id="@+id/textViewPort_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="          Port:" />
+        <EditText android:id="@+id/port_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="22" android:hint="port" android:ems="6" android:inputType="number"
+            android:layout_marginLeft="15dp" />
+    </LinearLayout>
+    <TextView android:id="@+id/textViewRecentConnections_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Recent connections:"
+        android:layout_row="5" />
+    <ListView android:id="@+id/list_videostreamer" android:layout_width="match_parent" android:layout_height="227dp"
+        android:layout_row="6" />
+    <!--<FrameLayout android:id="@+id/frame_videostreamer" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1.0"-->
+        <!--android:layout_row="8"-->
+        <!--android:layout_column="4" />-->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_row="9"
+        android:weightSum="1">
+        <TextView android:id="@+id/textView_videostreamer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Reset login settings to defaults:"
+            android:layout_weight="0.89" />
+        <ImageButton android:id="@+id/reset_videostreamer" android:background="@drawable/reset" android:layout_width="79dp" android:layout_height="79dp" android:text="Reset" android:onClick="ResetDefaults" />
+    </LinearLayout>
+</GridLayout>

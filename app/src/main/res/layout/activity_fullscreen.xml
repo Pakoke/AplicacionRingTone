@@ -1,0 +1,30 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+	android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+	android:paddingRight="@dimen/activity_horizontal_margin"
+	android:paddingTop="@dimen/activity_vertical_margin"
+	android:paddingBottom="@dimen/activity_vertical_margin"
+	app:layout_behavior="@string/appbar_scrolling_view_behavior">
+	<ImageView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/fullscreen_content"
+        android:contentDescription="Vista para mostrar la informacion enviada por la RaspberryPi" />
+	<GridLayout
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/fullscreen_content_controls"
+		android:rowCount="4">
+		<ImageButton android:id="@+id/setting_streamer_fullscreen" android:layout_column="0" android:background="@drawable/config"
+			android:contentDescription="Activar las configuracion de la camara(desactivado)" />
+		<ImageButton android:id="@+id/play_streamer_fullscreen" android:layout_column="1" android:background="@drawable/video"
+			android:contentDescription="boton para activar la captura continua" />
+		<ImageButton android:id="@+id/photo_streamer_fullscreen" android:layout_column="2" android:background="@drawable/camera"
+			android:contentDescription="boton para realizar una fotografia de la captura que se esta mostrando en ese momento." />
+		<ImageButton android:id="@+id/save_streamer_fullscreen" android:layout_column="3" android:background="@drawable/disk"
+			android:contentDescription="guardar una captura de la camara." />
+
+	</GridLayout>
+
+</RelativeLayout>
