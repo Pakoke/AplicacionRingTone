@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ProgressBar;
@@ -46,10 +48,12 @@ public class GridViewGalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_grid_view);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
         mGridView = (GridView) findViewById(R.id.gridView);
-        mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
+        //mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
         //Initialize with empty data
         mGridData = new ArrayList<>();
@@ -60,14 +64,37 @@ public class GridViewGalleryActivity extends AppCompatActivity {
 
                 //Get item at position
                 GridItem item = (GridItem) parent.getItemAtPosition(position);
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                String type = null;
+                String extension = MimeTypeMap.getFileExtensionFromUrl(item.getFile().getAbsolutePath());
+                if (extension != null) {
+                    type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+                }
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    if(type!=null && type.contains("image/"))
+                    {
+                        //Pass the image title and url to DetailsActivity
+                        intent = new Intent(GridViewGalleryActivity.this, DetailsActivity.class);
+                        intent.putExtra("title", item.getTitle());
+                        intent.putExtra("image", item.getImage());
+                        //Start details activity
+                        startActivity(intent);
+                    }
+                    else{
+                        intent.setDataAndType(Uri.fromFile(item.getFile()), type);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(intent);
+                    }
+                    //Toast.makeText(v.getContext(), "Se ha pulsado el fichero " + fileToClick.getName(), Toast.LENGTH_SHORT).show();
 
-                //Pass the image title and url to DetailsActivity
-                Intent intent = new Intent(GridViewGalleryActivity.this, DetailsActivity.class);
-                intent.putExtra("title", item.getTitle());
-                intent.putExtra("image", item.getImage());
+                }else{
+                    Toast.makeText(v.getContext(), "No esta instalada la aplicacion necesaria para reproducir el archivo " + item.getFile(), Toast.LENGTH_SHORT).show();
+                }
 
-                //Start details activity
-                startActivity(intent);
+
+
+
+
             }
         });
         //Start download
@@ -87,8 +114,19 @@ public class GridViewGalleryActivity extends AppCompatActivity {
                 Uri uri=Uri.fromFile(files[i]);
                 item = new GridItem();
                 item.setTitle(files[i].getName());
-                item.setImage(uri.getPath());
-
+                item.setFile(files[i]);
+                String type = null;
+                String extension = MimeTypeMap.getFileExtensionFromUrl(files[i].getAbsolutePath());
+                if (extension != null) {
+                    type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+                }
+                if(type != null && type.contains("video/")){
+                    item.setImage(uri.getPath());
+                }else if(type != null && type.contains("audio/")){
+                    item.setImage(getResources().getResourceName(R.drawable.music_512));
+                }else{
+                    item.setImage(uri.getPath());
+                }
                 mGridData.add(item);
                 result = 1;
             }
@@ -121,7 +159,7 @@ public class GridViewGalleryActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(GridViewGalleryActivity.this, "No se ha encontrado ninguna imagen!", Toast.LENGTH_SHORT).show();
             }
-            mProgressBar.setVisibility(View.GONE);
+            //mProgressBar.setVisibility(View.GONE);
         }
     }
 

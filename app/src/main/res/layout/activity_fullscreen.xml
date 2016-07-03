@@ -35,7 +35,8 @@
             android:background="@drawable/config"
             android:contentDescription="Activar las configuracion de la camara(desactivado)"
             android:scaleType="fitCenter"
-            android:onClick="configclick" />
+            android:onClick="configclick"
+            android:visibility="gone" />
 
         <ImageButton android:id="@+id/play_streamer_fullscreen" android:layout_width="100dp" android:layout_height="match_parent"
             android:layout_column="1"
@@ -57,7 +58,8 @@
             android:layout_row="0"
             android:background="@drawable/camera"
             android:contentDescription="boton para realizar una fotografia de la captura que se esta mostrando en ese momento."
-            android:onClick="updateImage" />
+            android:onClick="updateImage"
+            android:visibility="gone" />
 
         <ImageButton android:id="@+id/save_streamer_fullscreen" android:layout_width="103dp" android:layout_height="match_parent"
             android:layout_column="3"
@@ -70,7 +72,8 @@
             android:background="@drawable/disk"
             android:contentDescription="guardar una captura de la camara."
             android:scaleType="fitCenter"
-            android:onClick="saveimage" />
+            android:onClick="saveimage"
+            android:visibility="gone" />
 
     </GridLayout>
 

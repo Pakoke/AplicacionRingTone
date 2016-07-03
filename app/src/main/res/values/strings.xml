@@ -82,9 +82,10 @@
     <string name="help_pass">Solo caracteres alfanumericos</string>
     <string name="input_pass">Contraseña</string>
     <string name="s_sinformation">Enviar</string>
-    <string name="title_activity_functions_system">Funciones</string>
+
 
     <!-- Strings part Functions-->
+    <string name="title_activity_functions_system">Funcionalidades</string>
     <string name="title_type1">View Type 1</string>
     <string name="title_type2">View Type 2</string>
     <string name="title_type3">View Type 3</string>
@@ -125,12 +126,23 @@
 
     <string name="title_activity_info_app">Informacion</string>
     <string name="inf_title">Aqui podras encontrar toda la informacion de la aplicacion</string>
-    <string name="inf_content">Esta aplicacion esta orientada a trabajar con un sistema servidor domotico
-    para sacar partido de lo maximo posible a la hora de usabilidad del sistema entero.</string>
+    <string name="inf_content">\n
+        Esta aplicacion esta orientada a trabajar con un sistema servidor domotico.\n
+        Con esta aplicacion podremos tener un uso total de toda la funcionalidad que implementa este porterillo automatico.\n\n
+
+        La apliacion esta realizada por Francisco Javier Ruiz De La Torre, como proyecto de Fin de Grado por lo que todavia necesita
+        mucho trabajo y mejora en compatibilidad y traduccion.\n\n
+
+        Este codigo esta totalmente libre y se puede hacer uso de el en cualquier momento en el github, si se necesita cualquier ayuda
+        o resolver cualquier duda mi correo es fraruide@us.es.
+        \n
+        \n
+        <a href='https://github.com/Pakoke/AplicacionRingTone'>https://github.com/Pakoke/AplicacionRingTone</a>
+    </string>
 
     <!-- Strings part gallery -->
-    <string name="title_activity_details">DetailsActivity</string>
-    <string name="GalleryActivity">Galleria</string>
+    <string name="title_activity_details">Imagen</string>
+    <string name="GalleryActivity">Galeria</string>
 
     <!-- Strings parts of audio functions -->
     <string name="sound_text_time">Tiempo de grabacion</string>
@@ -139,7 +151,7 @@
     <string name="expanded">Esta es la notificacion expandida</string>
     <string name="expanded_image">Two Androids on top of each other. Symbolises an expanded notification.</string>
     <string name="title_activity_streamer_setting">StreamerSetting</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Configuration</string>
     <string name="drawable_audio_list">music_512</string>
     <string name="progress_dialog_saving">Guardando</string>
     <string name="no_space_error">espacio insuficiente</string>

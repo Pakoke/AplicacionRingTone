@@ -88,8 +88,8 @@ public class setting_activity extends AppCompatActivity {
         progress_send =(ProgressView) findViewById(R.id.s_progressbar);
 
         List<String> list = new ArrayList<String>();
-        list.add("Correo");
-        list.add("Whatsapp");
+        list.add("Offline");
+        list.add("Online");
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>
                 (this, android.R.layout.simple_spinner_item,list);
@@ -105,7 +105,7 @@ public class setting_activity extends AppCompatActivity {
         button_send.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intentToFunction = IntentFactory.createIntent(v.getContext(),FunctionsSystem.class);
+
                 Boolean good = true;
                 if(text_user.getText().toString().isEmpty()){
                     good=false;
@@ -127,12 +127,14 @@ public class setting_activity extends AppCompatActivity {
                     good=false;
                     text_pass.setError(getString(R.string.error_pass));
                 }
-                Log.d("Spinner",(String.valueOf(list_app.getSelectedItem().toString().contains("Correo"))));
-                if(list_app.getSelectedItem().toString().contains("Correo")){
+                Log.d("Spinner",(String.valueOf(list_app.getSelectedItem().toString().contains("Offline"))));
+                if(list_app.getSelectedItem().toString().contains("Offline")){
+                    intentToFunction = IntentFactory.createIntent(v.getContext(),FunctionsSystem.class);
                     intentToFunction.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                     startActivity(intentToFunction);
                 }else{
                     if(good){
+                        intentToFunction = IntentFactory.createIntent(v.getContext(),FunctionsSystem.class);
                         progress_send.start();
                         SharedSettings.user = text_user.getText().toString();
                         SharedSettings.pass = text_pass.getText().toString();
@@ -175,6 +177,8 @@ public class setting_activity extends AppCompatActivity {
                         break;
                     }
                 }
+                responsejson = handler.getResponseJson();
+
             }catch (Exception e){
                 Log.d("Excepcion", e.toString());
             }

@@ -34,9 +34,10 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Properties;
-
 import app.pacoke.aplicacionringtone.BuildConfig;
 import app.pacoke.aplicacionringtone.*;
+import app.ringtone.*;
+import factories.IntentFactory;
 
 public class StreamerSetting extends AppCompatActivity {
 
@@ -290,6 +291,13 @@ public class StreamerSetting extends AppCompatActivity {
         session.disconnect();
         finish();
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        Intent intent = IntentFactory.getFactory(FunctionsSystem.class.getName());
+        startActivity(intent);
     }
 
 }

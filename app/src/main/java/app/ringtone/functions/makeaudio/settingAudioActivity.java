@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
@@ -42,6 +43,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.io.StringWriter;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -112,7 +114,7 @@ public class settingAudioActivity extends AppCompatActivity {
         filestoshow = directory.listFiles(new FileFilter() {
             @Override
             public boolean accept(File pathname) {
-                return pathname.getName().matches(".*((.mp3)|(.ogg)|(.aac)|(.3gp)|(.wav)|(.amr))");
+                return pathname.getName().matches(".*((.mp3)|(.ogg)|(.aac)|(.3gp)|(.wav)|(.amr)|(.m4a))");
             }
         });
         Arrays.sort(filestoshow, new Comparator<File>() {
@@ -211,17 +213,17 @@ public class settingAudioActivity extends AppCompatActivity {
 
         @Override
         public void onClick(View v) {
-
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(fileToClick.getAbsolutePath()));
+            Intent intent = new Intent(Intent.ACTION_VIEW);
             String type = null;
             String extension = MimeTypeMap.getFileExtensionFromUrl(fileToClick.getAbsolutePath());
+            Log.d("Archivo Pulsado",fileToClick.getAbsolutePath());
             if (extension != null) {
                 type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
             }
-            intent.setDataAndType(Uri.parse(fileToClick.getAbsolutePath()), type);
+            intent.setDataAndType(Uri.fromFile(fileToClick), type);//"audio/*");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             if (intent.resolveActivity(getPackageManager()) != null) {
-                Toast.makeText(v.getContext(), "Se ha pulsado el fichero " + fileToClick.getName(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(v.getContext(), "Se ha pulsado el fichero " + fileToClick.getName(), Toast.LENGTH_SHORT).show();
                 v.getContext().startActivity(intent);
             }else{
                 Toast.makeText(v.getContext(), "No esta instalada la aplicacion necesaria para reproducir el archivo " + fileToClick.getName(), Toast.LENGTH_SHORT).show();
@@ -325,7 +327,8 @@ public class settingAudioActivity extends AppCompatActivity {
         mFileName = SharedSettings.FolderInternal;
         //mFileName = Environment.getExternalStorageDirectory().getAbsolutePath();
         Calendar c = Calendar.getInstance();
-        mFileName += "audiorecordtest"+c.get(Calendar.HOUR)+"_"+c.get(Calendar.MINUTE)+"_"+c.get(Calendar.SECOND)+".wav";
+        mFileName += "record"+c.get(Calendar.DAY_OF_MONTH)+"_"+c.get(Calendar.MONTH)+"_"+c.get(Calendar.YEAR)+"_"
+                +c.get(Calendar.HOUR)+"_"+c.get(Calendar.MINUTE)+"_"+c.get(Calendar.SECOND)+".wav";
         Log.d(LOG_TAG,mFileName);
 
         mRecorder = new MediaRecorder();
@@ -334,7 +337,7 @@ public class settingAudioActivity extends AppCompatActivity {
         mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AMR_NB);
         mRecorder.setOutputFile(mFileName);
         mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-        mRecorder.setAudioChannels(2);
+        mRecorder.setAudioChannels(1);
         mRecorder.setAudioSamplingRate(64);
 
         Log.i(LOG_TAG, "Grabando " + mFileName);
@@ -345,9 +348,7 @@ public class settingAudioActivity extends AppCompatActivity {
         }
         mRecorder.start();
 
-
-
-        t = new CountDownTimer( Long.MAX_VALUE , 1000) {
+        /*t = new CountDownTimer( Long.MAX_VALUE , 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -369,7 +370,7 @@ public class settingAudioActivity extends AppCompatActivity {
             public void onFinish() {            }
         };
 
-        t.start();
+        t.start();*/
     }
 
     private void stopRecording() {
@@ -377,10 +378,10 @@ public class settingAudioActivity extends AppCompatActivity {
         mRecorder.stop();
         mRecorder.release();
         mRecorder = null;
-        t.cancel();
+//        t.cancel();
 
-        loadFromFile();
-        saveRingtone(mFileName);
+        //loadFromFile();
+//        saveRingtone(mFileName);
 
         //Insert in the list of musics
         SampleFileData data = new SampleFileData();

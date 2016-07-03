@@ -2,6 +2,7 @@ package app.ringtone;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -28,6 +29,7 @@ import app.ringtone.functions.makevideo.RetrieveVideoManually;
 import app.ringtone.functions.stateServer.ServiceStateRing;
 import app.ringtone.functions.videostreamer.StreamerSetting;
 import binders.SampleData;
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import cz.msebera.android.httpclient.Header;
 import dtos.RingToneRestClient;
 import factories.IntentFactory;
@@ -38,13 +40,14 @@ import java.util.List;
 
 public class FunctionsSystem extends AppCompatActivity {
     public BottomSheetDialog mDialog;
+    public static SweetAlertDialog pDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main_example);
-
-        //startService(IntentFactory.createIntent(this, ServiceStateRing.class));
-
+        Intent intent = IntentFactory.getFactory(ServiceStateRing.class.getName());
+        if(intent == null)
+            startService(IntentFactory.createIntent(this, ServiceStateRing.class));
 
         setContentView(R.layout.activity_functions_system);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -141,8 +144,19 @@ public class FunctionsSystem extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             final Context currentContext = v.getContext();
-            RetrieveVideoManually makevideo= new RetrieveVideoManually(v.getContext());
+
+            pDialog = new SweetAlertDialog(currentContext, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.getProgressHelper().spin();
+            pDialog.setTitleText("Mandando solicitud...");
+            pDialog.setCancelable(false);
+            pDialog.setCanceledOnTouchOutside(true);
+            pDialog.show();
+
+            RetrieveVideoManually makevideo= new RetrieveVideoManually(v.getContext(),pDialog);
             RingToneRestClient.get("cameramethods/userVideo", makevideo);
+
+
 
         }
     }
@@ -164,8 +178,18 @@ public class FunctionsSystem extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             final Context currentContext = v.getContext();
-            RetrievePhotoManually makephoto= new RetrievePhotoManually(v.getContext());
+
+            pDialog = new SweetAlertDialog(currentContext, SweetAlertDialog.PROGRESS_TYPE);
+            pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
+            pDialog.getProgressHelper().spin();
+            pDialog.setTitleText("Mandando solicitud...");
+            pDialog.setCancelable(false);
+            pDialog.setCanceledOnTouchOutside(true);
+            pDialog.show();
+
+            RetrievePhotoManually makephoto= new RetrievePhotoManually(v.getContext(),pDialog);
             RingToneRestClient.get("cameramethods/userImage", makephoto);
+
         }
     }
 

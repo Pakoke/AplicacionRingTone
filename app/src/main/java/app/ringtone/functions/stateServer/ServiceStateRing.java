@@ -111,7 +111,7 @@ public class ServiceStateRing extends Service {
             }
         };
 
-        timer.scheduleAtFixedRate(timerTask, 0, 5000);
+        timer.scheduleAtFixedRate(timerTask, 0, 10000);
 
         return START_NOT_STICKY;
     }

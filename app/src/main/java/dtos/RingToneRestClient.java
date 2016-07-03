@@ -4,6 +4,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import settingsApp.SharedSettings;
 
 /**
@@ -19,6 +20,7 @@ public class RingToneRestClient {
     }
     public static void get(String url, AsyncHttpResponseHandler responseHandler) {
         client.setTimeout(20000);
+        client.setConnectTimeout(1000);
         client.get(getAbsoluteUrl(url), responseHandler);
     }
 
